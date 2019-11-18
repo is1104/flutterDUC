@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "230167727524",
+    "firebase_url": "https://zodductest.firebaseio.com",
+    "project_id": "zodductest",
+    "storage_bucket": "zodductest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:230167727524:android:1db55b5b098bc8e07f0531",
+        "android_client_info": {
+          "package_name": "com.example.flutter_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "230167727524-immres63o9a0j372joka983q1kvf7r9v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTWoAL3ktzNT0vBRUJkgF55QHNE0A_g_w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "230167727524-immres63o9a0j372joka983q1kvf7r9v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
