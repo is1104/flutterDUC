@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './homeview.dart';
 
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -51,6 +52,7 @@ class _HomeState extends State {
               new ListTile(
                 title: new Text('New Donation'),
                 trailing: Icon(Icons.arrow_drop_down),
+                
               ),
               new ListTile(
                 title: new Text('Pending Donation'),
