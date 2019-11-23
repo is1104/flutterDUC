@@ -14,7 +14,7 @@ description: A new Flutter application.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.3.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -58,6 +58,13 @@ flutter:
     - assets/images/bikku.jpeg
     - assets/images/children.jpeg
     - assets/images/elder.jpeg
+    - assets/images/bkku.png
+    - assets/images/army.png
+    - assets/images/bikku.png
+    - assets/images/children.png
+    - assets/images/elder.png
+    - assets/images/login.png
+
 
 
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/login/login.dart';
 import './login.dart';
 import './password.dart';
 
@@ -42,15 +43,10 @@ class LogIn extends StatelessWidget {
                             child: Padding(
                               padding:
                                   const EdgeInsets.fromLTRB(10, 20, 10, 10),
-                              child: RaisedButton(
-                                onPressed: (){
-                                   Navigator.pop(context);
-                                },
-                                child: Image.asset(
-                                  'assets/images/Logo.png',
-                                  width: 80,
-                                  height: 80,
-                                ),
+                              child: Image.asset(
+                                'assets/images/Logo.png',
+                                width: 80,
+                                height: 80,
                               ),
                             )),
                         CustomInputFieldEmail(

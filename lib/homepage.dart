@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/login/loginview.dart';
 import './homeview.dart';
-
 
 class Home extends StatefulWidget {
   @override
@@ -32,44 +32,50 @@ class _HomeState extends State {
                 new BoxDecoration(color: Color.fromARGB(180, 233, 3, 3)),
           ),
         ),
-        drawer: new Drawer(
-          child: new ListView(
-            children: <Widget>[
-              new UserAccountsDrawerHeader(
-                accountName: new Text('Dasith Devapriya'),
-                accountEmail: new Text('dasith84@gmail.com'),
-                decoration: new BoxDecoration(
-                    image: new DecorationImage(
-                  fit: BoxFit.fill,
-                  image: new NetworkImage(
-                      'https://vancityblog.azureedge.net/wp-content/uploads/2016/12/GiveHands-iStock-Blog-1280x620-1280x620.jpg'),
-                )),
-              ),
-              new ListTile(
-                title: new Text('HOME'),
-                trailing: Icon(Icons.home),
-              ),
-              new ListTile(
-                title: new Text('New Donation'),
-                trailing: Icon(Icons.arrow_drop_down),
-                
-              ),
-              new ListTile(
-                title: new Text('Pending Donation'),
-                trailing: Icon(Icons.watch),
-              ),
-              new ListTile(
-                title: new Text('Past Donation'),
-                trailing: Icon(Icons.calendar_today),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              new ListTile(
-                title: new Text('Close'),
-                trailing: Icon(Icons.cancel),
-              ),
-            ],
+        drawer: Builder(
+          builder: (context) => new Drawer(
+            child: new ListView(
+              children: <Widget>[
+                new UserAccountsDrawerHeader(
+                  accountName: new Text('Dasith Devapriya'),
+                  accountEmail: new Text('dasith84@gmail.com'),
+                  decoration: new BoxDecoration(
+                      image: new DecorationImage(
+                    fit: BoxFit.fill,
+                    image: new NetworkImage(
+                        'https://vancityblog.azureedge.net/wp-content/uploads/2016/12/GiveHands-iStock-Blog-1280x620-1280x620.jpg'),
+                  )),
+                ),
+                new ListTile(
+                  title: new Text('HOME'),
+                  trailing: Icon(Icons.home),
+                ),
+                new ListTile(
+                  title: new Text('New Donation'),
+                  trailing: Icon(Icons.arrow_drop_down),
+                ),
+                new ListTile(
+                  title: new Text('Pending Donation'),
+                  trailing: Icon(Icons.watch),
+                ),
+                new ListTile(
+                  title: new Text('Past Donation'),
+                  trailing: Icon(Icons.calendar_today),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                new ListTile(
+                  title: new Text('login'),
+                  trailing: Icon(Icons.person),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => LogIn()));
+                  },
+                ),
+              ],
+            ),
           ),
         ),
         body: HomeView(),

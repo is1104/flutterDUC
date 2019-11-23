@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import './bikkuinfo.dart';
+
 
 class Bikku extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+        appBar: AppBar(
           title: Text(
-            'DO elder CHARITY',
+            'BIKKU HOMES',
             style: TextStyle(
               fontSize: 28,
               color: Colors.white,
@@ -24,12 +26,30 @@ class Bikku extends StatelessWidget {
                 new BoxDecoration(color: Color.fromARGB(180, 233, 3, 3)),
           ),
         ),
-        body: RaisedButton(
-          onPressed: (){
-            Navigator.pop(context);
-          },
-        ),
-     
-    );
+        body: new Stack(
+          children: <Widget>[
+            new Container(
+              width: double.infinity,
+              height: 350,
+              decoration: new BoxDecoration(
+                image: new DecorationImage(
+                  image: new AssetImage("assets/images/bkku.png"),
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+            Center(
+              child: new RaisedButton(
+                child: new Text("More Info"),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => BikkuPage()),
+                  );
+                },
+              ),
+            ),
+          ],
+        ));
   }
 }
