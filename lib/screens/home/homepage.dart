@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/login/loginview.dart';
+import 'package:flutter_app/army.dart';
+import 'package:flutter_app/login/signup.dart';
 import './homeview.dart';
-
+import 'package:flutter_app/services/auth.dart';
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State {
+  AuthService _auth = AuthService();
   @override
+
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
@@ -16,15 +19,19 @@ class _HomeState extends State {
           title: Text(
             'DO YOUR CHARITY',
             style: TextStyle(
-              fontSize: 28,
+              fontSize: 20,
               color: Colors.white,
             ),
-            textAlign: TextAlign.center,
+            textAlign: TextAlign.left,
           ),
-          actions: [
-            IconButton(
-              icon: Image.asset('assets/images/Logo.png'),
-              onPressed: null,
+          actions: <Widget>[
+            FlatButton.icon(
+              icon: Container(
+                  width: 30, child: Image.asset('assets/images/Logo.png')),
+              label: Text('Log Out'),
+              onPressed: () async{
+                await _auth.signOut();
+              },
             ),
           ],
           flexibleSpace: Container(
@@ -71,7 +78,7 @@ class _HomeState extends State {
                   onTap: () {
                     Navigator.of(context).pop();
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => LogIn()));
+                        builder: (BuildContext context) => ArmyCardPage()));
                   },
                 ),
               ],

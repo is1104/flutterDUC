@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/army.dart';
-import 'login/loginview.dart';
-import './bikku.dart';
-import './army.dart';
-import './children.dart';
-import './elder.dart';
+import 'package:flutter_app/login/loginview.dart';
+import 'package:flutter_app/bikku.dart';
+import 'package:flutter_app/army.dart';
+import 'package:flutter_app/children.dart';
+import 'package:flutter_app/elder.dart';
 
 class HomeView extends StatelessWidget {
   final List<String> homeNames = [

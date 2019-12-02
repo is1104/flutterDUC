@@ -1,14 +1,14 @@
 /*import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_app/homeview.dart';
 import 'package:flutter_app/services/authentication.dart';
 
-class LoginPage extends StatefulWidget {
+class SignUpPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   String email = '';
@@ -39,10 +39,9 @@ class _LoginPageState extends State<LoginPage> {
           decoration: new BoxDecoration(color: Color.fromARGB(180, 233, 3, 3)),
         ),
       ),
-      body: 
-        
-         Container(
-          padding: const EdgeInsets.all(8.0),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
           height: 300,
           width: double.infinity,
           child: Form(
@@ -74,15 +73,10 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 RaisedButton(
                   color: Colors.blue,
-                  child: Text('Login', style: TextStyle(color: Colors.black)),
+                  child: Text('Loginn', style: TextStyle(color: Colors.black)),
                   onPressed: () async {
                     if (_formkey.currentState.validate()) {
-                      dynamic result = await _auth.signInWithEmailAndPassword(email: email,password: password);
-                         
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomeView()),
-                  );
+                      dynamic result = await _auth.createUserWithEmailAndPassword(email: email,password: password);
                       if (result == null) {
                         setState(() => error = 'could not sign in with credentials');
                       }
@@ -97,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
         ),
-      
+      ),
     );
   }
 }
