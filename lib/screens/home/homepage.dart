@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/army.dart';
-import 'package:flutter_app/login/signup.dart';
 import './homeview.dart';
 import 'package:flutter_app/services/auth.dart';
 class Home extends StatefulWidget {
