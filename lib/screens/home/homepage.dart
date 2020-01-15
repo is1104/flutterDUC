@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/army.dart';
 import './homeview.dart';
@@ -8,7 +10,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State {
+  FirebaseUser mCurrentUser;
   AuthService _auth = AuthService();
+  String _uname = "dada";
+  final FirebaseAuth _auth1 = FirebaseAuth.instance;
   @override
 
   Widget build(BuildContext context) {
@@ -43,7 +48,7 @@ class _HomeState extends State {
             child: new ListView(
               children: <Widget>[
                 new UserAccountsDrawerHeader(
-                  accountName: new Text('Dasith Devapriya'),
+                  accountName: new Text(_uname),
                   accountEmail: new Text('dasith84@gmail.com'),
                   decoration: new BoxDecoration(
                       image: new DecorationImage(
@@ -88,4 +93,11 @@ class _HomeState extends State {
       ),
     );
   }
+/* Future getCurrentUser () async {
+     
+    mCurrentUser = await _auth1.currentUser();
+    DocumentSnapshot item = await Firestore.instance.collection("userDetails").document(mCurrentUser.uid).get(); //If //I delete this line everything works fine but I don't have user name.
+    _uname = item['name'];
+  }*/
+
 }
