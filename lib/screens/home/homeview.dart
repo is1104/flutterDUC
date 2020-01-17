@@ -5,6 +5,7 @@ import 'package:flutter_app/bikku.dart';
 import 'package:flutter_app/army.dart';
 import 'package:flutter_app/children.dart';
 import 'package:flutter_app/elder.dart';
+import 'package:flutter_app/screens/home/userinfo.dart';
 
 class HomeView extends StatelessWidget {
   final List<String> homeNames = [
@@ -83,6 +84,7 @@ class HomeView extends StatelessWidget {
             ),
           ),
         ),
+        UserIn(),
       ],
     );
   }
