@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_app/bikku.dart';
 import 'package:flutter_app/screens/home/homepage.dart';
 
 // test git
-class BikkuPage extends StatelessWidget {
+class ChildrenPage extends StatelessWidget {
   Future getPosts() async {
     var firestore = Firestore.instance;
     QuerySnapshot qn = await firestore
         .collection('permenantHomes')
-        .where('homeType', isEqualTo: 'Elders` Home')
+        .where('homeType', isEqualTo: 'Childrens` Home')
         .getDocuments();
     return qn.documents;
   }
@@ -30,7 +30,7 @@ class BikkuPage extends StatelessWidget {
           }),
           title: Center(
             child: Text(
-              'Bikku Homes',
+              'Children Homes',
               style: TextStyle(fontSize: 20, color: Colors.white),
             ),
           ),
@@ -71,54 +71,16 @@ class BikkuPage extends StatelessWidget {
                                 alignment: Alignment.topCenter,
                               ),
                             ),
-                            height: 200,
+                            height: 120,
                             width: 100,
-                            child: Column(
-                              children: <Widget>[
-                                ListTile(
-                                  leading: Material(
-                                      elevation: 10, child: Icon(Icons.home)),
-                                  title: Text(
-                                      snapshot.data[index].data['homeName']),
-                                  trailing: Text('Number of People: ' +
-                                      snapshot
-                                          .data[index].data['noOfChildren']),
-                                  subtitle: Text('About Home: ' +
-                                      snapshot.data[index].data['aboutHome']),
-                                ),
-                                // SizedBox(height: 15,),
-                                Container(
-                                  
-                                  child: RaisedButton(
-                                    onPressed: () {
-                                      launch("tel://0705931399");
-                                    },
-                                    child: Text(
-                                      'View Calender',
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          color: Colors.black,
-                                          fontStyle: FontStyle.normal),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    alignment: Alignment.topLeft,
-                                    child: RaisedButton(
-                                      onPressed: () {
-                                        launch("tel://0705931399");
-                                      },
-                                      child: Material(
-                                        child: Icon(Icons.call),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                
-                              ],
+                            child: ListTile(
+                              leading: Material(
+                                  elevation: 10, child: Icon(Icons.home)),
+                              title: Text(snapshot.data[index].data['homeName']),
+                              trailing: Text('Number of People: ' +
+                                  snapshot.data[index].data['noOfChildren']),
+                              subtitle: Text('About Home: ' +
+                                  snapshot.data[index].data['aboutHome']),
                             ),
                           ),
                         ),
@@ -126,6 +88,7 @@ class BikkuPage extends StatelessWidget {
                     );
                   }, //title: Text(snapshot.data[index].data['h_name']),
                 );
+                
               }
             },
           ),

@@ -31,12 +31,12 @@ class AuthService {
     }
   }
 
-Future registerWithEmailandPassword(String email,String password) async{
+Future registerWithEmailandPassword(String email,String password,{String a,String b,String c,String d,String e}) async{
 
   try{
     AuthResult result = await _auth.createUserWithEmailAndPassword(email: email,password: password);
     FirebaseUser user = result.user;
-    await FireStoreDb(userid: user.uid).details("972332372v", "253,gdfg", "8/20", "dasith", "0774683634");
+    await FireStoreDb(userid: user.uid).details(a, b, c, d, e);
     return _userFromFirebaseUser(user);
   }catch(e){
      print(e.toString());

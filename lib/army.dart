@@ -1,25 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-// test git
-class ArmyCardPage extends StatelessWidget {
-  Future getPosts() async {
-    var firestore = Firestore.instance;
-    QuerySnapshot qn = await firestore.collection('permenantHomes').where('homeType',isEqualTo: 'Soldier Home').getDocuments();
-    return qn.documents;
-  }
+import './bikkuinfo.dart';
+import 'armyinfo.dart';
 
+
+class Army extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: Builder(builder: (BuildContext context) {
-            return IconButton(icon: Icon(Icons.menu), onPressed: null);
-          }),
-          title: Center(
-            child: Text(
-              'Army Homes',
-              style: TextStyle(fontSize: 20, color: Colors.white),
+          title: Text(
+            'Solider HOMES',
+            style: TextStyle(
+              fontSize: 28,
+              color: Colors.white,
             ),
+            textAlign: TextAlign.center,
           ),
           actions: [
             IconButton(
@@ -32,37 +27,30 @@ class ArmyCardPage extends StatelessWidget {
                 new BoxDecoration(color: Color.fromARGB(180, 233, 3, 3)),
           ),
         ),
-        body: Container(
-          child: FutureBuilder(
-            future: getPosts(),
-            builder: (_, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
-                  child: Text("Loading....."),
-                );
-              } else {
-                return ListView.builder(
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (_, index) {
-                    return Card(
-                      child: ListTile(
-                        leading: Icon(Icons.home),
-                        title: Text(snapshot.data[index].data['homeName']),
-                        subtitle: Text('Number of People: '+snapshot.data[index].data['homeType']),
-                        trailing: Icon(Icons.keyboard_arrow_right),
-                      ),
-                    );
-                  }, //title: Text(snapshot.data[index].data['h_name']),
-                );
-              }
-            },
-          ),
+        body: new Stack(
+          children: <Widget>[
+            new Container(
+              width: double.infinity,
+              height: 350,
+              decoration: new BoxDecoration(
+                image: new DecorationImage(
+                  image: new AssetImage("assets/images/Army1.jpg"),
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+            Center(
+              child: new RaisedButton(
+                child: new Text("More Info"),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ArmyPage()),
+                  );
+                },
+              ),
+            ),
+          ],
         ));
-        Container(width:300,height: 300,
-        child:RaisedButton(
-          onPressed: (){
-            Navigator.pop(context);
-          },)
-        );
   }
 }

@@ -246,7 +246,8 @@ class _SignUpState extends State<SignUp> {
                                 if (_formKey.currentState.validate()) {
                                   dynamic result =
                                       await _auth.registerWithEmailandPassword(
-                                          email, password);
+                                          email, password,a: nic,b: addr,c: dob,d:name,e:phone);
+                                      
                                   if (result == null) {
                                     setState(() =>
                                         error = 'password or email incorrect');

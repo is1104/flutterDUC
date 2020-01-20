@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_app/bikku.dart';
+import 'package:flutter_app/screens/home/homepage.dart';
+
 // test git
 class ElderPage extends StatelessWidget {
   Future getPosts() async {
     var firestore = Firestore.instance;
-    QuerySnapshot qn = await firestore.collection('permenantHomes').where('homeType',isEqualTo: 'Soldier Home').getDocuments();
+    QuerySnapshot qn = await firestore
+        .collection('permenantHomes')
+        .where('homeType', isEqualTo: 'Elders` Home')
+        .getDocuments();
     return qn.documents;
   }
 
@@ -13,7 +19,14 @@ class ElderPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           leading: Builder(builder: (BuildContext context) {
-            return IconButton(icon: Icon(Icons.menu), onPressed: null);
+            return IconButton(
+                icon: Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Home()),
+                  );
+                });
           }),
           title: Center(
             child: Text(
@@ -44,25 +57,41 @@ class ElderPage extends StatelessWidget {
                 return ListView.builder(
                   itemCount: snapshot.data.length,
                   itemBuilder: (_, index) {
-                    return Card(
-                      child: ListTile(
-                        leading: Icon(Icons.home),
-                        title: Text(snapshot.data[index].data['homeName']),
-                        subtitle: Text('Number of People: '+snapshot.data[index].data['homeType']),
-                        trailing: Icon(Icons.keyboard_arrow_right),
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        child: Material(
+                          elevation: 10,
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage("assets/images/nice.jpg"),
+                                fit: BoxFit.fill,
+                                alignment: Alignment.topCenter,
+                              ),
+                            ),
+                            height: 120,
+                            width: 100,
+                            child: ListTile(
+                              leading: Material(
+                                  elevation: 10, child: Icon(Icons.home)),
+                              title: Text(snapshot.data[index].data['homeName']),
+                              trailing: Text('Number of People: ' +
+                                  snapshot.data[index].data['noOfChildren']),
+                              subtitle: Text('About Home: ' +
+                                  snapshot.data[index].data['aboutHome']),
+                            ),
+                          ),
+                        ),
                       ),
                     );
                   }, //title: Text(snapshot.data[index].data['h_name']),
                 );
+                
               }
             },
           ),
         ));
-        Container(width:300,height: 300,
-        child:RaisedButton(
-          onPressed: (){
-            Navigator.pop(context);
-          },)
-        );
   }
 }
