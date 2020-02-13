@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_app/screens/webview.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_app/screens/home/homepage.dart';
 
@@ -9,7 +10,7 @@ class BikkuPage extends StatelessWidget {
     var firestore = Firestore.instance;
     QuerySnapshot qn = await firestore
         .collection('permenantHomes')
-        .where('homeType', isEqualTo: 'Elders` Home')
+        .where('homeType', isEqualTo: 'Childrens` Home')
         .getDocuments();
     return qn.documents;
   }
@@ -71,54 +72,83 @@ class BikkuPage extends StatelessWidget {
                                 alignment: Alignment.topCenter,
                               ),
                             ),
-                            height: 200,
+                            height: 300,
                             width: 100,
-                            child: Column(
-                              children: <Widget>[
-                                ListTile(
-                                  leading: Material(
-                                      elevation: 10, child: Icon(Icons.home)),
-                                  title: Text(
-                                      snapshot.data[index].data['homeName']),
-                                  trailing: Text('Number of People: ' +
-                                      snapshot
-                                          .data[index].data['noOfChildren']),
-                                  subtitle: Text('About Home: ' +
-                                      snapshot.data[index].data['aboutHome']),
-                                ),
-                                // SizedBox(height: 15,),
-                                Container(
-                                  
-                                  child: RaisedButton(
-                                    onPressed: () {
-                                      launch("tel://0705931399");
-                                    },
-                                    child: Text(
-                                      'View Calender',
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          color: Colors.black,
-                                          fontStyle: FontStyle.normal),
-                                      textAlign: TextAlign.center,
-                                    ),
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: <Widget>[
+                                  ListTile(
+                                    leading: Material(
+                                        elevation: 10, child: Icon(Icons.home)),
+                                    title: Text(
+                                        snapshot.data[index].data['homeName']),
+                                    trailing: Text('Number of People: ' +
+                                        snapshot
+                                            .data[index].data['noOfChildren']),
+                                    subtitle: Text('About Home: ' +
+                                        snapshot.data[index].data['aboutHome']),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    alignment: Alignment.topLeft,
-                                    child: RaisedButton(
-                                      onPressed: () {
-                                        launch("tel://0705931399");
-                                      },
-                                      child: Material(
-                                        child: Icon(Icons.call),
+                                  // SizedBox(height: 15,),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      alignment: Alignment.topRight,
+                                      child: Column(
+                                        children: <Widget>[
+                                          RaisedButton(
+                                            onPressed: () {
+                                              Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) => WebViewContainer()));
+                                            },
+                                            child: Text(
+                                              'View Calender',
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  color: Colors.black,
+                                                  fontStyle: FontStyle.normal),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
-                                ),
-                                
-                              ],
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      alignment: Alignment.topLeft,
+                                      child: RaisedButton(
+                                        onPressed: () {
+                                          
+                                          launch("tel://0779265695");
+                                        },
+                                        child: Material(
+                                          child: Icon(Icons.call),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      alignment: Alignment.topRight,
+                                      child: RaisedButton(
+                                        onPressed: () {
+                                          launch("tel://0705931399");
+                                        },
+                                        child: Text(
+                                          'Make Donation',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.black,
+                                              fontStyle: FontStyle.normal),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/armyinfo.dart';
+import 'package:flutter_app/screens/drawer/aboutus.dart';
+import 'package:flutter_app/screens/drawer/feedback.dart';
 import './homeview.dart';
 import 'package:flutter_app/services/auth.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +19,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State {
   FirebaseUser mCurrentUser;
   String _uname = " ";
+    String _lname = " ";
+    String _img = " ";
   AuthService _auth = AuthService();
   var firestore = Firestore.instance;
   final FirebaseAuth _auth1 = FirebaseAuth.instance;
@@ -23,6 +28,8 @@ class _HomeState extends State {
   void initState() {
     super.initState();
     initUser();
+    initImage();
+  
   }
 
   initUser() async {
@@ -33,8 +40,15 @@ class _HomeState extends State {
         .get();
 
     setState(() {
-      _uname = item['name'];
+      _uname = item['fname'];
+      _lname = item['lname'];
+      _img = item['picURL'];
     });
+  }
+  
+  initImage() async{
+    var ref = FirebaseStorage.instance.ref().child(_img);
+  ref.getDownloadURL().then((loc) => setState(() => _img = loc));
   }
 
   @override
@@ -73,8 +87,9 @@ class _HomeState extends State {
                 child: new ListView(
                   children: <Widget>[
                     new UserAccountsDrawerHeader(
+                      
                       accountName: new Text(
-                        _uname,
+                        _uname +' ' +_lname,
                         style: TextStyle(color: Colors.black),
                       ),
                       accountEmail: new Text(
@@ -84,13 +99,18 @@ class _HomeState extends State {
                       decoration: new BoxDecoration(
                           image: new DecorationImage(
                         fit: BoxFit.fill,
-                        image: new NetworkImage(
-                            'https://vancityblog.azureedge.net/wp-content/uploads/2016/12/GiveHands-iStock-Blog-1280x620-1280x620.jpg'),
+                        image: _img == null ? Image.asset('assets/images/Logo.png', height: 110.0,)
+                :NetworkImage(_img,)
                       )),
                     ),
                     new ListTile(
                       title: new Text('About Us'),
                       trailing: Icon(Icons.face),
+                      onTap: (){
+                         Navigator.of(context).pop();
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) => AboutUs()));
+                      },
                     ),
                     new ListTile(
                       title: new Text('Pending Donation'),
@@ -99,6 +119,11 @@ class _HomeState extends State {
                     new ListTile(
                       title: new Text('Feed Back'),
                       trailing: Icon(Icons.add_comment),
+                      onTap: (){
+                         Navigator.of(context).pop();
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) => FeedBack()));
+                      },
                     ),
                     SizedBox(
                       height: 10,

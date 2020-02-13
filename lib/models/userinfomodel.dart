@@ -1,9 +1,12 @@
 class Info{
 
   final String addr;
-  final String name;
+  final String fname;
+  final String lname;
   final String dob;
   final String nic;
   final String tp;
-  Info({this.addr,this.name,this.dob,this.nic,this.tp});
+  final String picURL;
+  
+  Info({this.addr,this.fname,this.dob,this.nic,this.tp,this.picURL,this.lname});
 }

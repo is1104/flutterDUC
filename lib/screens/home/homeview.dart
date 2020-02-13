@@ -1,9 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/army.dart';
-import 'package:flutter_app/login/loginview.dart';
 import 'package:flutter_app/bikku.dart';
-import 'package:flutter_app/army.dart';
 import 'package:flutter_app/children.dart';
 import 'package:flutter_app/elder.dart';
 import 'package:flutter_app/screens/home/userinfo.dart';

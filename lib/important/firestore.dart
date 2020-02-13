@@ -7,24 +7,28 @@ class FireStoreDb {
   final CollectionReference userDetails =
       Firestore.instance.collection('userDetails');
   Future details(
-      String nic, String addr, String dob, String name, String tp) async {
+      String nic, String addr, String dob, String tp,String picURL,String fname,String lname) async {
     return await userDetails.document(userid).setData({
       'address': addr,
       'dob': dob,
-      'name': name,
+      'fname': fname,
+      'lname': lname,
       'nic': nic,
       'tp': tp,
+      'picURL' : picURL,
     });
   }
 
   List<Info> _infoList(QuerySnapshot snapshot) {
     return snapshot.documents.map((a) {
       return Info(
-        name: a.data['name'] ?? '',
+        fname: a.data['fname'] ?? '',
+        lname: a.data['lname'] ?? '',
         addr: a.data['addr'] ?? '',
         dob: a.data['dob'] ?? '',
         nic: a.data['nic'] ?? '',
         tp: a.data['tp'] ?? '',
+        picURL: a.data['picURL'] ?? '',
       );
     }).toList();
   }

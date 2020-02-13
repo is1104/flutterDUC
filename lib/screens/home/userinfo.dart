@@ -13,7 +13,7 @@ class _UserInState extends State<UserIn> {
 
     final userDetail = Provider.of<List<Info>>(context);
     userDetail.forEach((a){
-       print(a.name);
+       print(a.fname);
     });
     return Container(
       
