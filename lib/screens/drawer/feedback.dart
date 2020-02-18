@@ -78,7 +78,7 @@ class _FeedBackState extends State<FeedBack> {
                               child: TextFormField(
                                 decoration: InputDecoration(
                                   hintText: 'Thoughts about the site',
-                                  fillColor: Colors.grey,
+                                  fillColor: Colors.white,
                                   filled: true, 
                                 ),
                                 onChanged: (value) {
@@ -92,7 +92,7 @@ class _FeedBackState extends State<FeedBack> {
                             TextFormField(
                               decoration: InputDecoration(
                                 hintText: 'Title',
-                                fillColor: Colors.grey,
+                                fillColor: Colors.white,
                                 filled: true,
                               ),
                               onChanged: (value) {
@@ -105,7 +105,7 @@ class _FeedBackState extends State<FeedBack> {
                             TextFormField(
                               decoration: InputDecoration(
                                 hintText: 'Message',
-                                fillColor: Colors.grey,
+                                fillColor: Colors.white,
                                 filled: true,
                               ),
                               onChanged: (value) {

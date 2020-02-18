@@ -35,7 +35,7 @@ class AuthService {
 Future registerWithEmailandPassword(String email,String password,{String a,String b,String c,String d,String e,String f,String g}) async{
 
   try{
-    AuthResult result = await _auth.createUserWithEmailAndPassword(email: email,password: password);
+    AuthResult result = await _auth.createUserWithEmailAndPassword(email: email.trim(),password: password);
     FirebaseUser user = result.user;
     await FireStoreDb(userid: user.uid).details(a, b, c, d, e,f,g);
     return _userFromFirebaseUser(user);
@@ -71,6 +71,16 @@ Future signInWithEmailandPassword(String email,String password) async{
      try{
         FirebaseUser result = await  _auth.currentUser();
     await FireStoreFb(userid: result.uid).details(a, b, c);
+    return _userFromFirebaseUser(result);
+  }catch(e){
+     print(e.toString());
+     return null;
+  }
+}
+Future user1({String a,String b,String c,String d,String e,String f,String g}) async{
+     try{
+        FirebaseUser result = await  _auth.currentUser();
+    await FireStoreDb(userid: result.uid).details(a, b, c,d,e,f,g);
     return _userFromFirebaseUser(result);
   }catch(e){
      print(e.toString());

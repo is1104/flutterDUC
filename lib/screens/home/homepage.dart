@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/armyinfo.dart';
 import 'package:flutter_app/screens/drawer/aboutus.dart';
 import 'package:flutter_app/screens/drawer/feedback.dart';
+import 'package:flutter_app/screens/drawer/settings.dart';
 import './homeview.dart';
 import 'package:flutter_app/services/auth.dart';
 import 'package:provider/provider.dart';
@@ -99,8 +99,8 @@ class _HomeState extends State {
                       decoration: new BoxDecoration(
                           image: new DecorationImage(
                         fit: BoxFit.fill,
-                        image: _img == null ? Image.asset('assets/images/Logo.png', height: 110.0,)
-                :NetworkImage(_img,)
+                        image: AssetImage('assets/images/Logo.png',)
+               
                       )),
                     ),
                     new ListTile(
@@ -112,10 +112,8 @@ class _HomeState extends State {
                             builder: (BuildContext context) => AboutUs()));
                       },
                     ),
-                    new ListTile(
-                      title: new Text('Pending Donation'),
-                      trailing: Icon(Icons.watch),
-                    ),
+                   
+                    
                     new ListTile(
                       title: new Text('Feed Back'),
                       trailing: Icon(Icons.add_comment),
@@ -134,7 +132,7 @@ class _HomeState extends State {
                       onTap: () {
                         Navigator.of(context).pop();
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (BuildContext context) => ArmyPage()));
+                            builder: (BuildContext context) => Settings()));
                       },
                     ),
                   ],

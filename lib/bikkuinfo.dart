@@ -98,7 +98,7 @@ class BikkuPage extends StatelessWidget {
                                           RaisedButton(
                                             onPressed: () {
                                               Navigator.of(context).push(MaterialPageRoute(
-                            builder: (BuildContext context) => WebViewContainer()));
+                            builder: (BuildContext context) => Webview()));
                                             },
                                             child: Text(
                                               'View Calender',
@@ -134,7 +134,8 @@ class BikkuPage extends StatelessWidget {
                                       alignment: Alignment.topRight,
                                       child: RaisedButton(
                                         onPressed: () {
-                                          launch("tel://0705931399");
+                                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) => Webview()));
                                         },
                                         child: Text(
                                           'Make Donation',

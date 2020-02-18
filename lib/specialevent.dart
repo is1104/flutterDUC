@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_app/screens/home/homepage.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // test git
 class SpecialEvent extends StatelessWidget {
@@ -70,16 +71,37 @@ class SpecialEvent extends StatelessWidget {
                                 alignment: Alignment.topCenter,
                               ),
                             ),
-                            height: 150,
+                            height: 300,
                             width: 100,
-                            child: ListTile(
-                              leading: Material(
-                                  elevation: 10, child: Icon(Icons.home)),
-                              title: Text(snapshot.data[index].data['Name']),
-                             // trailing: Text('Number of People: ' +
-                               //   snapshot.data[index].data['Value']),
-                              subtitle: Text('About Home: ' +
-                                  snapshot.data[index].data['Description']),
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: <Widget>[
+                                  ListTile(
+                                    leading: Material(
+                                        elevation: 10, child: Icon(Icons.home)),
+                                    title: Text(snapshot.data[index].data['Name']),
+                                   // trailing: Text('Number of People: ' +
+                                     //   snapshot.data[index].data['Value']),
+                                    subtitle: Text('About Home: ' +
+                                        snapshot.data[index].data['Description']),
+                                  ),
+                                  Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Container(
+                                        alignment: Alignment.topLeft,
+                                        child: RaisedButton(
+                                          onPressed: () {
+                                            
+                                            launch("tel://0779265695");
+                                          },
+                                          child: Material(
+                                            child: Icon(Icons.call),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_app/bikku.dart';
 import 'package:flutter_app/screens/home/homepage.dart';
+import 'package:flutter_app/screens/webview.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // test git
 class ElderPage extends StatelessWidget {
@@ -71,16 +73,84 @@ class ElderPage extends StatelessWidget {
                                 alignment: Alignment.topCenter,
                               ),
                             ),
-                            height: 120,
+                            height: 300,
                             width: 100,
-                            child: ListTile(
-                              leading: Material(
-                                  elevation: 10, child: Icon(Icons.home)),
-                              title: Text(snapshot.data[index].data['homeName']),
-                              trailing: Text('Number of People: ' +
-                                  snapshot.data[index].data['noOfChildren']),
-                              subtitle: Text('About Home: ' +
-                                  snapshot.data[index].data['aboutHome']),
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: <Widget>[
+                                  ListTile(
+                                    leading: Material(
+                                        elevation: 10, child: Icon(Icons.home)),
+                                    title: Text(
+                                        snapshot.data[index].data['homeName']),
+                                    trailing: Text('Number of People: ' +
+                                        snapshot
+                                            .data[index].data['noOfChildren']),
+                                    subtitle: Text('About Home: ' +
+                                        snapshot.data[index].data['aboutHome']),
+                                  ),
+                                  // SizedBox(height: 15,),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      alignment: Alignment.topRight,
+                                      child: Column(
+                                        children: <Widget>[
+                                          RaisedButton(
+                                            onPressed: () {
+                                              Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) => Webview()));
+                                            },
+                                            child: Text(
+                                              'View Calender',
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  color: Colors.black,
+                                                  fontStyle: FontStyle.normal),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      alignment: Alignment.topLeft,
+                                      child: RaisedButton(
+                                        onPressed: () {
+                                          
+                                          launch("tel://0779265695");
+                                        },
+                                        child: Material(
+                                          child: Icon(Icons.call),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      alignment: Alignment.topRight,
+                                      child: RaisedButton(
+                                        onPressed: () {
+                                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) => Webview()));
+                                        },
+                                        child: Text(
+                                          'Make Donation',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.black,
+                                              fontStyle: FontStyle.normal),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
